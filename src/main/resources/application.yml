@@ -1,0 +1,21 @@
+##info about our application
+info:
+  application:
+    name: Recruitment Management Application
+    description: Application for vacancies management
+    version: 0.0.1
+
+  ##actuator
+management.endpoints.web.exposure.include: "*"
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${database.host}:${database.port}/${database.name}
+    username: ${database.user}
+    password: ${database.password}
+  jpa:
+    properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    url: jdbc:postgresql://${database.host}:${database.port}/${database.name}
+    user: ${database.user}
+    password: ${database.password}
