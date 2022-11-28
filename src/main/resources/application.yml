@@ -19,3 +19,9 @@ spring:
     url: jdbc:postgresql://${database.host}:${database.port}/${database.name}
     user: ${database.user}
     password: ${database.password}
+
+logging:
+  level:
+    root: INFO
+    hibernate.SQL: DEBUG
+# logging.level.org.hibernate.type.descriptor.sql=TRACE
