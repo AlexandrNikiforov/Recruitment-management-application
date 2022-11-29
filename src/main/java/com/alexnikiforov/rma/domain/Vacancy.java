@@ -2,6 +2,8 @@ package com.alexnikiforov.rma.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,7 +21,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Vacancy {
 
-    public Vacancy(Company company, String positionName, String description, Integer salary, String salaryCurrency) {
+    public Vacancy(Experience requiredExperience, Company company, String positionName, String description, Integer salary, String salaryCurrency) {
+        this.requiredExperience = requiredExperience;
         this.company = company;
         this.positionName = positionName;
         this.description = description;
@@ -32,6 +35,9 @@ public class Vacancy {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vacancy_seq")
     @SequenceGenerator(name = "vacancy_seq")
     private Long id;
+
+    @Enumerated(EnumType.STRING)
+    private Experience requiredExperience;
 
     @ManyToOne
     private Company company;

@@ -36,8 +36,7 @@ CREATE TABLE public.vacancy (
     id bigint NOT NULL,
     company_id bigint NOT NULL,
     position_name varchar NOT NULL,
-    required_experience int CONSTRAINT CK_Table_Column_Range CHECK (
-       required_experience >= 0 AND required_experience <= 65), --Inclusive
+    required_experience varchar,
     description varchar,
     salary int,
     salary_currency varchar

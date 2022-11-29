@@ -10,6 +10,9 @@ public class VacancyResponseDto {
 
     private Long id;
 
+    @JsonProperty("required_experience")
+    private String requiredExperience;
+
     @JsonProperty("company_name")
     private String companyName;
 

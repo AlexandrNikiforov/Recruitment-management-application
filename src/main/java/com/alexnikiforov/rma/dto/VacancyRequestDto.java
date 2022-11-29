@@ -6,6 +6,9 @@ import lombok.Data;
 @Data
 public class VacancyRequestDto {
 
+    @JsonProperty("required_experience")
+    private String requiredExperience;
+
     @JsonProperty("company_name")
     private String companyName;
 

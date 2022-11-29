@@ -1,6 +1,7 @@
 package com.alexnikiforov.rma.util;
 
 import com.alexnikiforov.rma.domain.Company;
+import com.alexnikiforov.rma.domain.Experience;
 import com.alexnikiforov.rma.domain.Vacancy;
 import com.alexnikiforov.rma.dto.CompanyRequestDto;
 import com.alexnikiforov.rma.dto.CompanyResponseDto;
@@ -10,7 +11,9 @@ import com.alexnikiforov.rma.dto.VacancyResponseDto;
 public class DtoUtil {
 
     public static Vacancy toVacancyEntity(VacancyRequestDto vacancyRequestDto, Company company) {
-        return new Vacancy(company,
+        return new Vacancy(
+                Experience.valueOf(vacancyRequestDto.getRequiredExperience()),
+                company,
                 vacancyRequestDto.getPositionName(),
                 vacancyRequestDto.getDescription(),
                 Integer.valueOf(vacancyRequestDto.getSalary()),
@@ -24,6 +27,7 @@ public class DtoUtil {
     public static VacancyResponseDto toVacancyResponseDto(Vacancy vacancy) {
         return VacancyResponseDto.builder()
                 .id(vacancy.getId())
+                .requiredExperience(vacancy.getRequiredExperience().name())
                 .companyName(vacancy.getCompany().getName())
                 .positionName(vacancy.getPositionName())
                 .positionName(vacancy.getPositionName())
