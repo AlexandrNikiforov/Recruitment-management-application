@@ -22,8 +22,13 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class User {
+
+    public User(String email, String firstName, String lastName) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     @Id
     @Setter(AccessLevel.NONE)
@@ -48,6 +53,10 @@ public class User {
     private String lastName;
 
     private String password;
+
+    public void addRole (Role role) {
+        roles.add(role);
+    }
 
 
 }

@@ -21,13 +21,15 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Vacancy {
 
-    public Vacancy(Experience requiredExperience, Company company, String positionName, String description, Integer salary, String salaryCurrency) {
+    public Vacancy(Experience requiredExperience, Company company, String positionName, String description,
+                   Integer salary, String salaryCurrency, VacancyState state) {
         this.requiredExperience = requiredExperience;
         this.company = company;
         this.positionName = positionName;
         this.description = description;
         this.salary = salary;
         this.salaryCurrency = salaryCurrency;
+        this.state = state;
     }
 
     @Id
@@ -51,5 +53,8 @@ public class Vacancy {
 
     @Column(name = "salary_currency")
     private String salaryCurrency;
+
+    @Enumerated(EnumType.STRING)
+    private VacancyState state;
 
 }

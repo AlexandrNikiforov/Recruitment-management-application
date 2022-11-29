@@ -6,8 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RecruitmentManagementApplication {
 
-	//TODO 01. Add required experience to Vacancy
-	//TODO 02. Add state to Vacancy
 	//TODO 03. Add due date to Vacancy
 	//TODO 04. Recruiter
 

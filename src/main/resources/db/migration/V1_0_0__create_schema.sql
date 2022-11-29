@@ -1,7 +1,7 @@
 CREATE TABLE public.user (
     id bigint NOT NULL,
     email varchar NOT NULL,
-    password varchar NOT NULL,
+    password varchar,
     enabled boolean NOT NULL,
     role_id bigint NOT NULL,
     first_name varchar,
@@ -39,7 +39,8 @@ CREATE TABLE public.vacancy (
     required_experience varchar,
     description varchar,
     salary int,
-    salary_currency varchar
+    salary_currency varchar,
+    state varchar
 );
 
 CREATE SEQUENCE public.vacancy_seq

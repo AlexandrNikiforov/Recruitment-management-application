@@ -2,6 +2,7 @@ package com.alexnikiforov.rma.services;
 
 import com.alexnikiforov.rma.domain.Company;
 import com.alexnikiforov.rma.domain.Vacancy;
+import com.alexnikiforov.rma.domain.VacancyState;
 import com.alexnikiforov.rma.dto.VacancyRequestDto;
 import com.alexnikiforov.rma.dto.VacancyResponseDto;
 import com.alexnikiforov.rma.exception.VacancyException;
@@ -33,7 +34,8 @@ public class VacancyService {
                 Company companyEntity = companyRepository.findByName(vacancyRequestDto.getCompanyName());
 
                 return Optional.ofNullable(companyEntity)
-                        .map(company -> vacancyRepository.save(DtoUtil.toVacancyEntity(vacancyRequestDto, company)))
+                        .map(company -> vacancyRepository.save(DtoUtil.toVacancyEntity(vacancyRequestDto, company,
+                                VacancyState.NOT_ASSIGNED)))
                         .map(DtoUtil::toVacancyResponseDto)
                         .orElseThrow(() -> new VacancyException("Error when adding a new Vacancy"));
             } catch (Exception e) {
@@ -42,7 +44,6 @@ public class VacancyService {
             }
         }
     }
-
 
     public List<Vacancy> getAll() {
         log.info("Get all vacancies");
