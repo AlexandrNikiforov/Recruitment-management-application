@@ -1,7 +1,8 @@
 package com.alexnikiforov.rma.controller;
 
 import com.alexnikiforov.rma.domain.Vacancy;
-import com.alexnikiforov.rma.dto.VacancyDto;
+import com.alexnikiforov.rma.dto.VacancyRequestDto;
+import com.alexnikiforov.rma.dto.VacancyResponseDto;
 import com.alexnikiforov.rma.services.VacancyService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,9 +26,9 @@ public class VacancyController {
     private final VacancyService vacancyService;
 
     @PostMapping
-    public ResponseEntity<Vacancy> addVacancy(@RequestBody VacancyDto vacancyDto) {
+    public ResponseEntity<VacancyResponseDto> addVacancy(@RequestBody VacancyRequestDto vacancyRequestDto) {
         //TODO add validation
-        Vacancy vacancy = vacancyService.addVacancy(vacancyDto);
+        VacancyResponseDto vacancy = vacancyService.addVacancy(vacancyRequestDto);
         return ResponseEntity.ok().body(vacancy);
     }
 

@@ -14,7 +14,11 @@ spring:
     username: ${database.user}
     password: ${database.password}
   jpa:
-    properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format-sql: true
+
   flyway:
     url: jdbc:postgresql://${database.host}:${database.port}/${database.name}
     user: ${database.user}

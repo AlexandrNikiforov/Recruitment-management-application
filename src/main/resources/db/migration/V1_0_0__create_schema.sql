@@ -34,7 +34,7 @@ CREATE TABLE public.user_role (
 
 CREATE TABLE public.vacancy (
     id bigint NOT NULL,
-    company varchar NOT NULL,
+    company_id bigint NOT NULL,
     position_name varchar NOT NULL,
     required_experience int CONSTRAINT CK_Table_Column_Range CHECK (
        required_experience >= 0 AND required_experience <= 65), --Inclusive
@@ -44,6 +44,19 @@ CREATE TABLE public.vacancy (
 );
 
 CREATE SEQUENCE public.vacancy_seq
+    START WITH 1
+    INCREMENT BY 50
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+CREATE TABLE public.company (
+    id bigint NOT NULL,
+    name varchar NOT NULL UNIQUE,
+    description varchar
+);
+
+CREATE SEQUENCE public.company_seq
     START WITH 1
     INCREMENT BY 50
     NO MINVALUE
@@ -64,4 +77,13 @@ ALTER TABLE ONLY public.user_role
 
 ALTER TABLE ONLY public.user_role
     ADD CONSTRAINT fk_userrole_role FOREIGN KEY (role_id) REFERENCES public.role(id);
+
+ALTER TABLE ONLY public.vacancy
+    ADD CONSTRAINT vacancy_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY public.company
+    ADD CONSTRAINT company_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY public.vacancy
+    ADD CONSTRAINT fk_vacancy_company FOREIGN KEY (company_id) REFERENCES public.company(id);
 

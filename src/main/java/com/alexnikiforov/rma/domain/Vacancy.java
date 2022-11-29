@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -18,7 +19,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Vacancy {
 
-    public Vacancy(String company, String positionName, String description, Integer salary, String salaryCurrency) {
+    public Vacancy(Company company, String positionName, String description, Integer salary, String salaryCurrency) {
         this.company = company;
         this.positionName = positionName;
         this.description = description;
@@ -32,7 +33,8 @@ public class Vacancy {
     @SequenceGenerator(name = "vacancy_seq")
     private Long id;
 
-    private String company;
+    @ManyToOne
+    private Company company;
 
     @Column(name = "position_name")
     private String positionName;

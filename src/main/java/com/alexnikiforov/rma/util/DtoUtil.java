@@ -1,16 +1,44 @@
 package com.alexnikiforov.rma.util;
 
+import com.alexnikiforov.rma.domain.Company;
 import com.alexnikiforov.rma.domain.Vacancy;
-import com.alexnikiforov.rma.dto.VacancyDto;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.alexnikiforov.rma.dto.CompanyRequestDto;
+import com.alexnikiforov.rma.dto.CompanyResponseDto;
+import com.alexnikiforov.rma.dto.VacancyRequestDto;
+import com.alexnikiforov.rma.dto.VacancyResponseDto;
 
 public class DtoUtil {
 
-    public static Vacancy toVacancyEntity(@RequestBody VacancyDto vacancyDto) {
-        return new Vacancy(vacancyDto.getCompany(),
-                vacancyDto.getPositionName(),
-                vacancyDto.getDescription(),
-                Integer.valueOf(vacancyDto.getSalary()),
-                vacancyDto.getSalaryCurrency());
+    public static Vacancy toVacancyEntity(VacancyRequestDto vacancyRequestDto, Company company) {
+        return new Vacancy(company,
+                vacancyRequestDto.getPositionName(),
+                vacancyRequestDto.getDescription(),
+                Integer.valueOf(vacancyRequestDto.getSalary()),
+                vacancyRequestDto.getSalaryCurrency());
+    }
+
+    public static Company toCompanyEntity(CompanyRequestDto companyRequestDto) {
+        return new Company(companyRequestDto.getName(), companyRequestDto.getDescription());
+    }
+
+    public static VacancyResponseDto toVacancyResponseDto(Vacancy vacancy) {
+        return VacancyResponseDto.builder()
+                .id(vacancy.getId())
+                .companyName(vacancy.getCompany().getName())
+                .positionName(vacancy.getPositionName())
+                .positionName(vacancy.getPositionName())
+                .description(vacancy.getDescription())
+                .salary(vacancy.getSalary())
+                .salaryCurrency(vacancy.getSalaryCurrency())
+                .build();
+    }
+
+    public static CompanyResponseDto toCompanyResponseDto(Company company) {
+        return CompanyResponseDto.builder()
+                .id(company.getId())
+                .name(company.getName())
+                .description(company.getDescription())
+                .build();
+
     }
 }
